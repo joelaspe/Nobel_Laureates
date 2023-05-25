@@ -61,29 +61,26 @@ async function generateLaureates(prizeData) {
         const wikiURL = WIKIDATA_BASE_API_URL + data[0].wikidata.id + '.json';
         const wiki_response = await fetch(wikiURL);
         const wiki_data = await wiki_response.json();
-        console.log(wiki_data);
         var picName = "test.jpg";
         var wikiPicUrl = "https://www.wikipedia.org/test.jpg";
         if('P18' in wiki_data.entities[data[0].wikidata.id].claims) {
-            console.log("Element " + i + " contains P18");
             picName = wiki_data.entities[data[0].wikidata.id].claims.P18[0].mainsnak.datavalue.value;
             picName = picName.split(' ').join('_');
             const picHash = CryptoJS.MD5(picName).toString();
             picName = encodeURIComponent(picName);
             wikiPicUrl = 'https://upload.wikimedia.org/wikipedia/commons/' + picHash[0] + '/' + picHash[0] + picHash[1] + '/' + picName;
-            console.log(wikiPicUrl); 
         } else {
             // the default P18 image is not present make another call for all images on the page and take the first
             const wikiImageURL = WIKIPEDIA_BASE_API_URL + data[0].wikipedia.slug;
-            console.log('Did not find P18, now looking for all images at ' + wikiImageURL);
             const imageScrape_response = await fetch(wikiImageURL);
             const imageArray = await imageScrape_response.json();
-            console.log(imageArray);
             picName = imageArray.parse.images[0];
             const picHash = CryptoJS.MD5(picName).toString();
             picName = encodeURIComponent(picName);
             wikiPicUrl = 'https://upload.wikimedia.org/wikipedia/commons/' + picHash[0] + '/' + picHash[0] + picHash[1] + '/' + picName;
-            console.log(wikiPicUrl); 
+            if(imageArray.parse.images.length < 1) {
+                wikiPicUrl = 'prize.jpg';
+            }
         }
         $('.laureates-container').append($('<div/>').addClass('laureate-container').attr('id', 'laureate-container-' + i));
         if('orgName' in prizeData[0].laureates[i]) {
@@ -92,6 +89,7 @@ async function generateLaureates(prizeData) {
                 
             $('#laureate-container-' + i).append($('<div/>').addClass('laureate').attr('id', 'laureate-' + i).append($('<p/>')).text(prizeData[0].laureates[i].fullName.en));
        }
+       console.log(wikiPicUrl); 
        $('#laureate-' + i).append($('<img/>').addClass('laureate-image').attr('src', wikiPicUrl));
     }
     
@@ -129,7 +127,7 @@ function processData(data) {
             $awardQuotation.append($('<blockquote/>').addClass('motivation').text(data[0].categoryFullName.en + " " + data[0].awardYear + " was awarded jointly to " + generateNameList(laureateNames) + " \"" + data[0].laureates[0].motivation.en + " \""));    
         } else { 
             //generate single citation
-            $awardQuotation.append($('<blockquote/>').addClass('motivation').text(data[0].categoryFullName.en + " " + data[0].awardYear + " was awarded to " + data[0].laureates[0].fullName + " \"" + data[0].laureates[0].motivation.en + "\""));    
+            $awardQuotation.append($('<blockquote/>').addClass('motivation').text(data[0].categoryFullName.en + " " + data[0].awardYear + " was awarded to " + laureateNames[0] + " \"" + data[0].laureates[0].motivation.en + "\""));    
 
           
         }
