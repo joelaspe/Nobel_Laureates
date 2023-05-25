@@ -89,8 +89,8 @@ async function generateLaureates(prizeData) {
                 
             $('#laureate-container-' + i).append($('<div/>').addClass('laureate').attr('id', 'laureate-' + i).append($('<p/>')).text(prizeData[0].laureates[i].fullName.en));
        }
-       console.log(wikiPicUrl); 
-       $('#laureate-' + i).append($('<img/>').addClass('laureate-image').attr('src', wikiPicUrl));
+       $('#laureate-' + i).append($('<a/>').attr("href", data[0].wikipedia.english).attr("id", "laureate-link-" + i).addClass('laureate-link'));
+       $('#laureate-link-' + i).append($('<img/>').attr('src', wikiPicUrl).addClass('laureate-image'));
     }
     
 }
@@ -131,7 +131,7 @@ function processData(data) {
 
           
         }
-        $awardQuotation.append($('<blockquote/>').addClass('prize-amount').text('Prize Amount: ' + data[0].prizeAmount + ' kr'));
+        $awardQuotation.append($('<blockquote/>').addClass('prize-amount').text('Prize Amount: ' + data[0].prizeAmount.toLocaleString("en-US") + ' kr'));
     }
 }
 
