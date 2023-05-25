@@ -5,11 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
     <title>Nobel Prize Searcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styling.css">
 </head>
 <body>
-    <h1>Welcome to the Nobel Prize Search Page</h1>
+    <header class="primary-header">
+        <h1>Welcome to the Nobel Prize Search Page</h1>
+    </header>
     <label>
         Category
         <input list="category-input" label="Category" required="true" id="category-choice" name="category-choice">
@@ -28,14 +33,31 @@
     </label>
     <button id="search-btn">Search</button>
     <div class="result-container">
-        <span class="result-card">
-            <h2 class="card-category">The Nobel Prize in Chemistry</h3>
-            <h3 class="card-year">1901</h2>
-            <h3 class="card-person">Jacobus H. van 't Hoff</h2>
-            <p class="card-motivation">in recognition of the extraordinary services he has rendered by the discovery of the laws of chemical dynamics and osmotic pressure in solutions</p>
-            <p class="prize-amount">Prize Amount: 225,987 kr</p>
-        </span>
+        <div class="laureates-container">
+            <div class="laureate-container">
+                <div class="laureate">
+                    Jacobus H. van 't Hoff
+                    <img class="laureate-image" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Vant_Hoff.jpg" alt="Vant Hoff">
+                </div>
+            </div>
+            <div class="laureate-container">
+                <div class="laureate">
+                    Joey Laspe <!---- FIXME: remove this in final version -->
+                </div>
+            </div>
+        </div>
+        <div class="award-quotation">
+            <blockquote class="motivation">
+                <p>The Nobel Prize in Chemistry 1901 was awarded to Jacobus H. van 't Hoff "in recognition of the extraordinary services he has rendered by the discovery of the laws of chemical dynamics and osmotic pressure in solutions"</p>
+            </blockquote>
+            <blockquote class="prize-amount">
+                <p>Prize Amount: 225,987 kr</p>
+            </blockquote>
+        </div>        
     </div>
+    <footer class="footer">
+        <small>All data courtesy of <a href=https://www.nobelprize.org/about/developer-zone-2/>Nobel Prize Outreach<a></small>
+    </footer>
     <script defer src="main.js"></script>
 </body>
 </html>

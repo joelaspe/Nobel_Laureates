@@ -1,0 +1,33 @@
+.laureates-container {
+    display: flex;
+    gap: 50px;
+}
+
+.laureate-container {
+    display: flex;
+}
+
+.laureate {
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.laureate-image {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+
+.motivation {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+.prize-amount {
+    font-family: 'Playfair Display', serif;
+    font-style: normal;
+}
