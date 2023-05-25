@@ -4,20 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
     <title>Nobel Prize Searcher</title>
 </head>
 <body>
     <h1>Welcome to the Nobel Prize Search Page</h1>
-    <button id="search-btn">Search</button>
     <label>
         Category
-        <input value = "che" type="text" label="Category" id="category-input">
+        <input list="category-input" label="Category" required="true" id="category-choice" name="category-choice">
+        <datalist id="category-input">
+            <option value="Chemistry"></option>
+            <option value="Economics"></option>
+            <option value="Literature"></option>
+            <option value="Peace"></option>
+            <option value="Physics"></option>
+            <option value="Medicine"></option>
+        </datalist>
     </label>
     <label>
         Year
-        <input value="1901" type="text" label="Year" id="year-input"></input> 
+        <input type="number" value="1901" min="1901" max="1902" step="1" label="Year" required="true" id="year-input"></input> 
     </label>
+    <button id="search-btn">Search</button>
+    <div class="result-container">
+        <span class="result-card">
+            <h2 class="card-category">The Nobel Prize in Chemistry</h3>
+            <h3 class="card-year">1901</h2>
+            <h3 class="card-person">Jacobus H. van 't Hoff</h2>
+            <p class="card-motivation">in recognition of the extraordinary services he has rendered by the discovery of the laws of chemical dynamics and osmotic pressure in solutions</p>
+            <p class="prize-amount">Prize Amount: 225,987 kr</p>
+        </span>
+    </div>
     <script defer src="main.js"></script>
 </body>
 </html>
