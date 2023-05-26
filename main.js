@@ -35,7 +35,6 @@ const WIKIPEDIA_BASE_API_URL = 'https://en.wikipedia.org/w/api.php?action=parse&
 const searchBtn = document.querySelector("#search-btn");
 searchBtn.addEventListener('click', getData);
 
-
 /** Makes the API call to the nobel prize API */
 async function getData() {
     const yearInputElement = document.querySelector("#year-input");
@@ -43,6 +42,7 @@ async function getData() {
     const categoryInputElement = document.querySelector('#category-choice');
     const categoryChoice = makeAPIFriendlyCategoryName(categoryInputElement.value);
     const apiString = generateApiStringCategoryAndYear(categoryChoice,year);
+    console.log(apiString);
 
     const response = await fetch(apiString);
     const data = await response.json();
