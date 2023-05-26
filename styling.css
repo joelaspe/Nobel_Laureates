@@ -49,6 +49,7 @@ table {
 
 /*** Begin my styling *****/
 
+
 /******** HEADER **********/
 .primary-header {
     background-color: #252525;
@@ -71,11 +72,15 @@ table {
 /***** FORM CONTROLS ******/
 
 
+/***** RESULTS CONTAINER ****/
+.result-container {
+    padding: 5px;
+}
+
 /******* LAUREATES *********/
 .laureates-container {
     display: flex;
-    gap: 50px;
-   
+    gap: 10vw;
 }
 
 .laureate-container {
@@ -83,32 +88,46 @@ table {
 }
 
 .laureate {
-    font-weight: bold;
-    font-size: 14px;
     display: flex;
     flex-direction: column;
     padding: 5px;
 }
 
+.laureate, h4 {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+
 .laureate-image {
     border-radius: 4px;
-    width: 150px;
+    width: 200px;
 
 }
 
 /******* MOTIVATION QUOTES **********/
+.award-quotation {
+    width: 80vw;
+    height: 10vh;
+}
+
 .motivation {
     font-family: 'Playfair Display', serif;
     font-style: italic;
+    font-size: 20px;
 }
 
 .prize-amount {
     font-family: 'Playfair Display', serif;
     font-style: normal;
+    font-size: 17px;
 }
 
 
 /********* FOOTER *************/
 .footer {
     background-color: #D8DCE6;
+    padding: 5px;
+    /* height: 100vw; */
 }

@@ -42,8 +42,6 @@ async function getData() {
     const categoryInputElement = document.querySelector('#category-choice');
     const categoryChoice = makeAPIFriendlyCategoryName(categoryInputElement.value);
     const apiString = generateApiStringCategoryAndYear(categoryChoice,year);
-    console.log(apiString);
-
     const response = await fetch(apiString);
     const data = await response.json();
     
@@ -56,7 +54,7 @@ async function generateLaureates(prizeData) {
         const laureateAPI_URL = LAUREATE_API_BASE_URL + prizeData[0].laureates[i].id;
         const response = await fetch(laureateAPI_URL);
         const data = await response.json();
-        console.log(data);   
+        console.log(data);   //FIXME: remove in final version
                 
         const wikiURL = WIKIDATA_BASE_API_URL + data[0].wikidata.id + '.json';
         const wiki_response = await fetch(wikiURL);
@@ -84,10 +82,12 @@ async function generateLaureates(prizeData) {
         }
         $('.laureates-container').append($('<div/>').addClass('laureate-container').attr('id', 'laureate-container-' + i));
         if('orgName' in prizeData[0].laureates[i]) {
-            $('#laureate-container-' + i).append($('<div/>').addClass('laureate').attr('id', 'laureate-' + i).append($('<p/>')).text(prizeData[0].laureates[i].orgName.en));
+            $('#laureate-container-' + i).append($('<div/>').addClass('laureate').attr('id', 'laureate-' + i).append($('<h4/>').text(prizeData[0].laureates[i].orgName.en)));
+            $('#laureate-' + i).append($('<p/>').text(data[0].founded.place.locationString.en));
         } else {
                 
-            $('#laureate-container-' + i).append($('<div/>').addClass('laureate').attr('id', 'laureate-' + i).append($('<p/>')).text(prizeData[0].laureates[i].fullName.en));
+            $('#laureate-container-' + i).append($('<div/>').addClass('laureate').attr('id', 'laureate-' + i).append($('<h4/>').text(prizeData[0].laureates[i].fullName.en)));
+            $('#laureate-' + i).append($('<p/>').text(data[0].birth.place.locationString.en));
        }
        $('#laureate-' + i).append($('<a/>').attr("href", data[0].wikipedia.english).attr("id", "laureate-link-" + i).addClass('laureate-link'));
        $('#laureate-link-' + i).append($('<img/>').attr('src', wikiPicUrl).addClass('laureate-image'));
